@@ -4,9 +4,13 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    bash31-src = {
+      url = "https://ftp.gnu.org/gnu/bash/bash-3.1.tar.gz";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, bash31-src }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -14,10 +18,7 @@
         bash31 = pkgs.stdenv.mkDerivation rec {
           pname = "bash";
           version = "3.1";
-          src = pkgs.fetchurl {
-            url = "mirror://gnu/bash/bash-${version}.tar.gz";
-            sha256 = "sha256-1pUrLDj5v0F1Wd07Bxhg4Qmd37ihLAIo8ir69H9507k=";
-          };
+          src = bash31-src;
           buildInputs = [ pkgs.ncurses ];
           nativeBuildInputs = [ pkgs.gcc ];
           
@@ -46,7 +47,7 @@
         };
 
         apps = {
-          testbash3-1 = {
+          testbash-31 = {
             type = "app";
             program = "${makeTestRunner bash31}/bin/test-runner";
           };

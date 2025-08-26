@@ -1,5 +1,18 @@
 {
   "nodes": {
+    "bash31-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1133964898,
+        "narHash": "sha256-Key+xtUmeHfUAyEkqtsyZg+ljkA5IbNmZCWzYcORBAE=",
+        "type": "tarball",
+        "url": "https://ftp.gnu.org/gnu/bash/bash-3.1.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://ftp.gnu.org/gnu/bash/bash-3.1.tar.gz"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -36,6 +49,7 @@
     },
     "root": {
       "inputs": {
+        "bash31-src": "bash31-src",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs"
       }
