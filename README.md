@@ -1,6 +1,8 @@
 # A Tale of two `bash`s
 
 This repo contains a demo of nix being used to dependency-inject different versions of bash.
+It is featured in this video: https://vimeo.com/1113780459
+
 
 [test.sh](./test.sh) contains a bash script.
 [flake.nix](./flake.nix) defines two apps (to see these, run `nix flake show` at the repo root)
